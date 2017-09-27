@@ -14,7 +14,9 @@ export interface State {
   autoResults: string[];
   sunrise: string;
   sunset: string;
+  wind: string;
   country: string;
+  alerts: string[];
 }
 
 const initialState: State = {
@@ -27,7 +29,9 @@ const initialState: State = {
   autoResults: [],
   sunrise: '',
   sunset: '',
-  country: 'US'
+  wind: '',
+  country: 'US',
+  alerts: []
 }
 
 export function weatherLocationReducer(state = initialState, action: WeatherLocationActions.WeatherLocationActions) {
@@ -77,11 +81,21 @@ export function weatherLocationReducer(state = initialState, action: WeatherLoca
         ...state,
         sunset: action.payload
       }
+      case WeatherLocationActions.WIND:
+        return {
+          ...state,
+          wind: action.payload
+        }
     case WeatherLocationActions.UPDATE_COUNTRY:
       return {
         ...state,
         country: action.payload
       }
+      case WeatherLocationActions.UPDATE_ALERTS:
+        return {
+          ...state,
+          alerts: action.payload
+        }
     default:
       return state;
   }

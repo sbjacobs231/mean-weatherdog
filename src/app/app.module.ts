@@ -20,7 +20,11 @@ import { RequestService } from './forecast/request.service';
 import { ClickValueService } from './forecast/searchdrop/click-value.service';
 import { SearchdropComponent } from './forecast/searchdrop/searchdrop.component';
 import { TodayComponent } from './forecast/today/today.component';
+import { DataService } from './data.service';
 
+import { AuthModule } from './auth/auth.module';
+import { AuthService } from './auth/auth.service';
+import { ErrorService } from './auth/errors/error.service';
 
 @NgModule({
   declarations: [
@@ -38,10 +42,11 @@ import { TodayComponent } from './forecast/today/today.component';
     HttpModule,
     JsonpModule,
     HttpClientModule,
+    AuthModule,
     StoreModule.forRoot({weatherLocation: weatherLocationReducer}),
     !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
-  providers: [RequestService, AutocompleteService, ClickValueService],
+  providers: [RequestService, AutocompleteService, ClickValueService, DataService, AuthService, ErrorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

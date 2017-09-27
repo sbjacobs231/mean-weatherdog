@@ -2,9 +2,9 @@ div {
   width: 400px;
   border-radius: 5px;
   position: absolute;
-  top: 110px;
+  top: 75px;
   z-index: 1;
-  background-color: #ffffff;
+  background-color: rgb(255, 255, 255);
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
 }
 
@@ -22,7 +22,7 @@ div:before {
 
 p {
   color: #5b5b5b;;
-  font-size: 14px;
+  font-size: 15px;
   padding-left: 15px;
   margin: 5px 0;
 }

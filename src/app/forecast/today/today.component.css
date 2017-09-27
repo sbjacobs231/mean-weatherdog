@@ -5,32 +5,50 @@
 .leftColumn {
   text-align: center;
 }
-h2 {
-  font-size: 30px;
-  color: #434343;
+.temp {
+  width: 100%;
+  height: 175px;
+  margin-top: 30px;
+  display: table;
+  background-color: #f4f4f4;
+  border-radius: 20px;
+  overflow: hidden;
+}
+.temp-row {
+  width: 100%;
+  height: 43px;
+  background-color: #48b3ff;
+  display: table-row;
+}
+.temp h2 {
+  font-size: 28px;
+  color: #fff;
   letter-spacing: 0.4px;
+  margin: 5px 0;
 }
-.circle {
-  width: 215px;
-  height: 215px;
-  border: solid 8px #62d657;
-  margin-top: 15px;
-  border-radius: 50%;
-  display:table-cell;
-  vertical-align:middle;
-  display: inline-block;
-  padding-top: 40px;
+.cell-hold {
+  display: table;
+  height:100%;
+  width:100%;
 }
-p {
-  opacity: 0.75;
-  font-size: 16px;
+.table-cell {
+  width: 50%;
+  display: table-cell;
+  vertical-align: middle;
+}
+.table-cell p {
+  font-size: 20px;
   letter-spacing: 0.3px;
   color: #434343;
+  margin: 0;
 }
 h1 {
-  font-size: 45px;
+  font-size: 50px;
   letter-spacing: 0.3px;
   color: #62d657;
+  margin: 0;
+  border-right: 1px solid #434343;
+  padding: 15px;
 }
 .map {
   overflow: hidden;
@@ -41,10 +59,54 @@ h1 {
   text-align: center;
 }
 .rightColumn h3 {
-  font-size: 16px;
+  font-size: 22px;
   letter-spacing: 0.3px;
   color: #434343;
+  margin: 10px 0;
 }
-.col-xs-4 img {
-  width: 70px;
+.col-xs-3 img {
+  width: 75px;
+}
+.alerts {
+  margin-top: 30px;
+  background-color: #f4f4f4;
+  border-radius: 20px;
+  min-height: 175px;
+  width: 100%;
+  display: inline-block;
+  overflow: hidden;
+}
+.alerts h1 {
+  margin: 5px 0;
+  font-size: 28px;
+  display: table-cell;
+  color: #fff;
+  width: 60%;
+  text-align: left;
+  padding: 0 0 0 5px;
+  vertical-align: middle;
+  border: none;
+}
+.alerts h2 {
+  font-size: 20px;
+  margin-top: 40px;
+}
+.glyphicon {
+  color: #fff;
+  font-size: 37px;
+  display: table-cell;
+  text-align: right;
+  width: 40%;
+  padding-right: 5px;
+  vertical-align: middle;
+}
+li {
+  font-size: 16px;
+  text-align: left;
+}
+.bar {
+  background-color: #fe7272;
+  display: table;
+  width: 100%;
+  height: 43px;
 }

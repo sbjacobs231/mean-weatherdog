@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { DatePipe } from '@angular/common';
 import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -10,6 +9,7 @@ import { RequestService } from './request.service';
 import { ClickValueService } from './searchdrop/click-value.service';
 import * as WeatherLocationActions from './store/location.actions';
 import * as fromLocation from './store/location.reducers';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-forecast',
@@ -19,14 +19,14 @@ import * as fromLocation from './store/location.reducers';
 })
 export class ForecastComponent implements OnInit {
   @ViewChild('autocomplete') private inputSearch: ElementRef;
-  today: number = Date.now();
   address: Observable<fromLocation.State>;
   inputValue: any;
 
   constructor(private store: Store<fromLocation.AppState>,
               private autocompleteService: AutocompleteService,
               private requestService: RequestService,
-              private clickValueService: ClickValueService) { }
+              private clickValueService: ClickValueService,
+              private authService: AuthService) { }
 
   ngOnInit() {
     this.address = this.store.select('weatherLocation');
@@ -41,6 +41,14 @@ export class ForecastComponent implements OnInit {
 
   runAutocomplete(userInput) {
     this.autocompleteService.autocomplete(userInput);
+  }
+
+  isLoggedIn() {
+    return this.authService.isLoggedIn();
+  }
+
+  logout() {
+    this.authService.logout();
   }
 
 }

@@ -1,0 +1,22 @@
+<div class="body">
+  <div class="child">
+    <img src="../../assets/images/mascot.svg" alt="">
+    <img src="../../assets/images/logo.svg" alt="">
+    <div class="user-input">
+      <div class="button-group">
+        <button
+          routerLink=""
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }">Signin
+        </button>
+        <button
+          routerLink="/signup"
+          routerLinkActive="active">Signup
+        </button>
+      </div>
+      <div class="router">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>

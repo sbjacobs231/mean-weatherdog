@@ -3,17 +3,21 @@
   font-family: "ReadventorRegular";
   src: url("./assets/fonts/texgyreadventor-regular.otf");
 }
+@font-face {
+  font-family: "ReadventorBold";
+  src: url("./assets/fonts/texgyreadventor-bold.otf");
+}
+@font-face {
+  font-family: "MayekaBoldDemo";
+  src: url("./assets/fonts/MayekaBoldDemo.otf");
+}
 body,
 .container {
   min-width: 1000px;
 }
 body {
-  background-color: #f6f6f6;
+  background-color: #fff;
 }
 * {
   font-family: "ReadventorRegular", Helvetica, Verdana, sans-serif;
-}
-@font-face {
-  font-family: "ReadventorBold";
-  src: url("./assets/fonts/texgyreadventor-bold.otf");
 }

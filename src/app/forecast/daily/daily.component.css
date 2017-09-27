@@ -18,14 +18,14 @@ th {
 th,
 td {
   width: 12%;
-  font-size: 14px;
+  font-size: 15px;
   text-align: center;
   letter-spacing: 0.5px;
   color: #555555;
 }
 tr {
   width: 100%;
-  height: 50px;
+  height: 45px;
   border-bottom: solid 1px rgba(151, 151, 151, 0.5);
 }
 b {

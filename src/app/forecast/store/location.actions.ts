@@ -9,7 +9,9 @@ export const UPDATE_HOURLY_ARRAY = 'UPDATE_HOURLY_ARRAY';
 export const UPDATE_AUTO_RESULTS = 'UPDATE_AUTO_RESULTS';
 export const UPDATE_SUNRISE = 'UPDATE_SUNRISE';
 export const UPDATE_SUNSET = 'UPDATE_SUNSET';
+export const WIND = 'WIND';
 export const UPDATE_COUNTRY = 'UPDATE_COUNTRY';
+export const UPDATE_ALERTS = 'UPDATE_ALERTS';
 
 export class UpdateLocation implements Action {
   readonly type = UPDATE_LOCATION;
@@ -65,10 +67,22 @@ export class UpdateSunset implements Action {
   constructor(public payload: string) {}
 }
 
+export class Wind implements Action {
+  readonly type = WIND;
+
+  constructor(public payload: string) {}
+}
+
 export class UpdateCountry implements Action {
   readonly type = UPDATE_COUNTRY;
 
   constructor(public payload: string) {}
+}
+
+export class UpdateAlerts implements Action {
+  readonly type = UPDATE_ALERTS;
+
+  constructor(public payload: string[]) {}
 }
 
 
@@ -82,4 +96,6 @@ export type WeatherLocationActions =
   UpdateAutoResults |
   UpdateSunrise |
   UpdateSunset |
-  UpdateCountry;
+  Wind |
+  UpdateCountry |
+  UpdateAlerts;

@@ -1,35 +1,41 @@
 <div class="container header">
   <div class="row">
-    <div class="col-xs-5">
-      <h3>{{ today | date:'MMM dd, y EEE h:mm a'}}</h3>
+    <div class="col-xs-12" style="text-align:right;padding-top:10px;">
+        <a (click)="logout()">Logout</a>
     </div>
   </div>
   <div class="row">
-    <div class="col-xs-6">
-      <form class="form-group" #f="ngForm">
-        <input type="search"
-          #autocomplete
-          autofocus
-          (keyup)="runAutocomplete(autocomplete.value)"
-          class="form-control"
-          placeholder="San Francisco"
-          value="{{ inputValue }}"/>
-      </form>
+    <div class="col-xs-3">
+      <img src="../../assets/images/logo.svg" alt="logo">
+    </div>
+    <div class="col-xs-3 searchbar">
       <app-searchdrop></app-searchdrop>
+      <form class="form-group" #f="ngForm">
+        <div class="inner-addon right-addon">
+          <i class="glyphicon glyphicon-search"></i>
+          <input type="search"
+            #autocomplete
+            autofocus
+            (keyup)="runAutocomplete(autocomplete.value)"
+            class="form-control"
+            placeholder="San Francisco"
+            value="{{ inputValue }}"/>
+        </div>
+      </form>
     </div>
     <div class="col-xs-6 nav-buttons">
       <div class="button-group">
         <button
-          routerLink="/"
+          routerLink="/forecast"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }">Today
         </button>
         <button
-          routerLink="/hourly"
+          routerLink="hourly"
           routerLinkActive="active">Hourly
         </button>
         <button
-          routerLink="/daily"
+          routerLink="daily"
           routerLinkActive="active">10 day
         </button>
       </div>

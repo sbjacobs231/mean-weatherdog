@@ -5,34 +5,44 @@
 .row {
   display: flex;
 }
+.date {
+  margin-bottom: 0;
+}
 h3 {
   color: white;
-  font-size: 18px;
+  font-size: 20px;
   padding-left: 12px;
 }
+.searchbar {
+  height: 70px;
+  display: table;
+}
 input {
-  margin: 10px 0;
-  background: transparent;
-  border: none;
-  font-size: 40px;
-  color: white;
-  height: auto;
-  letter-spacing: 0.5px;
+  border-radius: 10px;
+  box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+  height:40px;
+  font-size: 18px;
+  color: #434343;
+  letter-spacing: 0.2px;
+}
+form {
+  display:table-cell;
+  vertical-align: middle;
 }
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  color: #fff;
+  color: #434343;
   opacity: 0.5;
 }
 ::-moz-placeholder { /* Firefox 19+ */
-  color: #fff;
+  color: #434343;
   opacity: 0.5;
 }
 :-ms-input-placeholder { /* IE 10+ */
-  color: #fff;
+  color: #434343;
   opacity: 0.5;
 }
 :-moz-placeholder { /* Firefox 18- */
-  color: #fff;
+  color: #434343;
   opacity: 0.5;
 }
 .form-control {
@@ -45,22 +55,30 @@ input {
 .button-group {
   position: absolute;
   bottom: 0;
+  right: 0;
+  padding-right: 15px;
 }
 .nav-buttons button {
   border: none;
   outline: none;
   border-top: 9px solid #dcdcdc;
-  font-size: 14px;
+  font-size: 18px;
   color: #434343;
   background-color: #dcdcdc;
   margin: 0 10px;
-  width: 120px;
+  width: 135px;
   height: 40px;
   letter-spacing: 0.5px;
 }
 button.active {
   border-top: 9px solid #e4a258 !important;
-  background-color: #f6f6f6 !important;
+  background-color: #fff !important;
+}
+a {
+  color: #fff;
+  margin: 10px;
+  font-size: 18px;
+  cursor: pointer;
 }
 .contents {
   width: 100%;
@@ -68,9 +86,28 @@ button.active {
 .content {
   padding: 0;
 }
+img {
+  width: 100%;
+  height: 100%;
+}
+
+.inner-addon {
+    position: relative;
+}
+
+/* style icon */
+.inner-addon .glyphicon {
+  position: absolute;
+  padding: 10px;
+  pointer-events: none;
+  font-size: 18px;
+}
+.right-addon .glyphicon { right: 0px;}
+
+.right-addon input { padding-right: 30px; }
 
 @media only screen and (max-width: 1262px) {
   .nav-buttons button {
-    /*width: 125px;*/
+    width: 130px;
   }
 }

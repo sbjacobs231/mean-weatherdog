@@ -12,6 +12,8 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { AuthGuard } from './auth/auth-guard.service';
 
+import { ErrorComponent } from './auth/errors/error.component';
+
 const appRoutes: Routes = [
   { path: '', component: AuthComponent, children: [
     { path: '', component: LoginComponent, pathMatch: 'full'},

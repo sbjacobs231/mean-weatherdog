@@ -1,12 +1,5 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-4">
-      <label for="addCity">Recieve Email Weather Alerts</label>
-      <input id="addCity" type="text" placeholder="Add city... ">
-      <span class="glyphicon glyphicon-plus"></span>
-    </div>
-    <div class="col-xs-8">
-
-    </div>
-  </div>
+<div class="col-xs-12 email-container">
+  <h3>Recieve Email Alerts</h3>
+  <h4 *ngIf="city | async; let city">{{ city.wLocation }}</h4>
+  <span class="glyphicon glyphicon-plus"></span>
 </div>

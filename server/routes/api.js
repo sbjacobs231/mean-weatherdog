@@ -8,53 +8,58 @@ var jwt = require('jsonwebtoken');
 const User = require('../../models/user');
 
 // Connect
-const connection = (closure) => {
-    // return MongoClient.connect('mongodb://localhost:27017/mean-weather-app', (err, db) => {
-    return MongoClient.connect('mongodb://test-user:testpassword@ds147864.mlab.com:47864/weather-app', (err, db) => {
-        if (err) return console.log(err);
-        closure(db);
-    });
+const connection = closure => {
+  // return MongoClient.connect('mongodb://localhost:27017/mean-weather-app', (err, db) => {
+  return MongoClient.connect(
+    'mongodb://test-user:testpassword@ds147864.mlab.com:47864/weather-app',
+    (err, db) => {
+      if (err) return console.log(err);
+      closure(db);
+    }
+  );
 };
 
 // Error handling
 const sendError = (err, res) => {
-    response.status = 501;
-    response.message = typeof err == 'object' ? err.message : err;
-    res.status(501).json(response);
+  response.status = 501;
+  response.message = typeof err == 'object' ? err.message : err;
+  res.status(501).json(response);
 };
 
 // Response handling
 let response = {
-    status: 200,
-    data: [],
-    message: null
+  status: 200,
+  data: [],
+  message: null
 };
 
 // Get users
 router.get('/users', (req, res) => {
-    connection((db) => {
-        db.collection('users')
-            .find()
-            .toArray()
-            .then((users) => {
-                response.data = users;
-                res.json(response);
-            })
-            .catch((err) => {
-                sendError(err, res);
-            });
-    });
+  connection(db => {
+    db
+      .collection('users')
+      .find()
+      .toArray()
+      .then(users => {
+        response.data = users;
+        res.json(response);
+      })
+      .catch(err => {
+        sendError(err, res);
+      });
+  });
 });
 
 router.post('/users', (req, res) => {
   const user = new User({
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      password: bcrypt.hashSync(req.body.password, 10),
-      email: req.body.email
-    });
-  connection((db) => {
-    db.collection('users')
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    password: bcrypt.hashSync(req.body.password, 10),
+    email: req.body.email
+  });
+  connection(db => {
+    db
+      .collection('users')
       .save(user)
       .then(function(result) {
         return res.status(201).json({
@@ -62,18 +67,19 @@ router.post('/users', (req, res) => {
           obj: result
         });
       })
-      .catch((err) => {
+      .catch(err => {
         return res.status(500).json({
           title: 'An error occurred',
-          error: {'message': 'This email is already registered'}
+          error: { message: 'This email is already registered' }
         });
       });
   });
 });
 
 router.post('/users/signin', (req, res) => {
-  connection((db) => {
-    db.collection('users')
+  connection(db => {
+    db
+      .collection('users')
       .findOne({ email: req.body.email }, function(err, user) {
         if (err) {
           return res.status(500).json({
@@ -84,23 +90,23 @@ router.post('/users/signin', (req, res) => {
         if (!user) {
           return res.status(401).json({
             title: 'Login failed',
-            error: {message: 'Invalid Login credentials'}
+            error: { message: 'Invalid Login credentials' }
           });
         }
         if (!bcrypt.compareSync(req.body.password, user.password)) {
           return res.status(401).json({
             title: 'Login failed',
-            error: {message: 'Invalid Login credentials'}
+            error: { message: 'Invalid Login credentials' }
           });
         }
-        const token = jwt.sign({user: user}, 'secret', {expiresIn: 7200});
+        const token = jwt.sign({ user: user }, 'secret', { expiresIn: 7200 });
         res.status(200).json({
           message: 'Successfully logged in',
           token: token,
           userId: user._id
         });
-      })
-  })
-})
+      });
+  });
+});
 
 module.exports = router;

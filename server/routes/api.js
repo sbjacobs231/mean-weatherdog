@@ -55,7 +55,8 @@ router.post('/users', (req, res) => {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     password: bcrypt.hashSync(req.body.password, 10),
-    email: req.body.email
+    email: req.body.email,
+    cityAlerts: []
   });
   connection(db => {
     db

@@ -1,5 +1,17 @@
 <div class="col-xs-12 email-container">
   <h3>Recieve Email Alerts</h3>
   <h4 *ngIf="city | async; let city">{{ city.wLocation }}</h4>
-  <span class="glyphicon glyphicon-plus"></span>
+  <span
+    *ngIf="!isLoggedIn(); else addCity"
+    class="glyphicon glyphicon-plus"
+    routerLink=""
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }">
+  </span>
+  <ng-template #addCity>
+    <span
+      class="glyphicon glyphicon-plus"
+      (click)="postCity()">
+    </span>
+  </ng-template>
 </div>

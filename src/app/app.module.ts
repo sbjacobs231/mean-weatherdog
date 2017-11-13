@@ -25,6 +25,7 @@ import { ErrorComponent } from './auth/errors/error.component';
 import { AuthModule } from './auth/auth.module';
 import { AuthService } from './auth/auth.service';
 import { ErrorService } from './auth/errors/error.service';
+import { EmailAlertsComponent } from './email-alerts/email-alerts.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ErrorService } from './auth/errors/error.service';
     DailyComponent,
     SearchdropComponent,
     TodayComponent,
-    ErrorComponent
+    ErrorComponent,
+    EmailAlertsComponent
   ],
   imports: [
     BrowserModule,

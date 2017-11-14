@@ -2,9 +2,8 @@
   <div class="row">
     <div class="col-xs-12" style="text-align:right;padding-top:10px;">
       <a *ngIf="!isLoggedIn(); else logoutTag"
-        routerLink=""
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }">Login</a>
+        routerLink="/signin"
+        routerLinkActive="active">Login</a>
       <ng-template #logoutTag><a (click)="logout()">Logout</a></ng-template>
     </div>
   </div>

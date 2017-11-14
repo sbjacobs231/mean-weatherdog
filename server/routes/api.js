@@ -9,7 +9,9 @@ const User = require('../../models/user');
 
 // Connect
 const connection = closure => {
-  // return MongoClient.connect('mongodb://localhost:27017/mean-weather-app', (err, db) => {
+  // return MongoClient.connect(
+  //   'mongodb://localhost:27017/mean-weather-app',
+  //   (err, db) => {
   return MongoClient.connect(
     'mongodb://test-user:testpassword@ds147864.mlab.com:47864/weather-app',
     (err, db) => {
@@ -47,6 +49,23 @@ router.get('/users', (req, res) => {
       .catch(err => {
         sendError(err, res);
       });
+  });
+});
+
+router.get('/users/:id', (req, res) => {
+  console.log('get user info');
+  User.findOne({
+    _id: req.params.id
+  }).exec((err, user) => {
+    if (err) {
+      return res.status(500).json({
+        title: 'An error occured',
+        error: err
+      });
+    } else {
+      console.log(user);
+      res.status(200).json(user);
+    }
   });
 });
 

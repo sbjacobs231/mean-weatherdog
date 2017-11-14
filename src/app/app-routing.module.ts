@@ -17,19 +17,19 @@ import { ErrorComponent } from './auth/errors/error.component';
 const appRoutes: Routes = [
   {
     path: '',
-    component: AuthComponent,
-    children: [
-      { path: '', component: LoginComponent, pathMatch: 'full' },
-      { path: 'signup', component: RegisterComponent }
-    ]
-  },
-  {
-    path: 'forecast',
     component: ForecastComponent,
     children: [
       { path: '', component: TodayComponent, pathMatch: 'full' },
       { path: 'daily', component: DailyComponent },
       { path: 'hourly', component: HourlyComponent }
+    ]
+  },
+  {
+    path: '',
+    component: AuthComponent,
+    children: [
+      { path: 'signin', component: LoginComponent },
+      { path: 'signup', component: RegisterComponent }
     ]
   },
   { path: '**', redirectTo: '' }

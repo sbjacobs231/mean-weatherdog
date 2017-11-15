@@ -1,17 +1,18 @@
 <div class="col-xs-12 email-container">
   <h3>Recieve Email Alerts</h3>
-  <h4 *ngIf="city | async; let city">{{ city.wLocation }}</h4>
-  <span
-    *ngIf="!isLoggedIn(); else addCity"
-    class="glyphicon glyphicon-plus"
-    routerLink=""
-    routerLinkActive="active"
-    [routerLinkActiveOptions]="{ exact: true }">
-  </span>
-  <ng-template #addCity>
+  <div *ngIf="city | async; let city">
+    <h4>{{ city.wLocation }}</h4>
     <span
+      *ngIf="!isLoggedIn(); else addCity"
       class="glyphicon glyphicon-plus"
-      (click)="postCity()">
+      routerLink="/signin"
+      routerLinkActive="active">
     </span>
-  </ng-template>
+    <ng-template #addCity>
+      <span
+        class="glyphicon glyphicon-plus"
+        (click)="postCity( city.wLocation )">
+      </span>
+    </ng-template>
+  </div>
 </div>

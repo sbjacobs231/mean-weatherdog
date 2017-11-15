@@ -129,4 +129,25 @@ router.post('/users/signin', (req, res) => {
   });
 });
 
+router.put('/users/:id', (req, res) => {
+  console.log('backend triggered');
+  console.log('req', req);
+  console.log('req body', req.body);
+  User.findOneAndUpdate(
+    {
+      _id: req.body.id
+    },
+    { $set: { cityAlerts: req.body.cityAlerts } },
+    { upsert: true },
+    function(err, newCityAlert) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(newCityAlert);
+        res.status(204);
+      }
+    }
+  );
+});
+
 module.exports = router;

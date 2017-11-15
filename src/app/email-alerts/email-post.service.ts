@@ -7,6 +7,4 @@ import { ErrorService } from '../auth/errors/error.service';
 @Injectable()
 export class EmailPostService {
   constructor(private http: Http, private errorService: ErrorService) {}
-
-  addCity() {}
 }

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import * as WeatherLocationActions from '../forecast/store/location.actions';
 import * as fromLocation from '../forecast/store/location.reducers';
 import { AuthService } from '../auth/auth.service';
+import { CityListService } from './city-list.service';
 
 @Component({
   selector: 'app-email-alerts',
@@ -15,7 +16,8 @@ export class EmailAlertsComponent implements OnInit {
 
   constructor(
     private store: Store<fromLocation.AppState>,
-    private authService: AuthService
+    private authService: AuthService,
+    private cityListService: CityListService
   ) {}
 
   ngOnInit() {
@@ -26,7 +28,7 @@ export class EmailAlertsComponent implements OnInit {
     return this.authService.isLoggedIn();
   }
 
-  postCity() {
-    console.log('post city');
+  postCity(location) {
+    this.cityListService.addCity(location);
   }
 }

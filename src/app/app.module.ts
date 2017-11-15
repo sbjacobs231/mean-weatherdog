@@ -25,7 +25,9 @@ import { ErrorComponent } from './auth/errors/error.component';
 import { AuthModule } from './auth/auth.module';
 import { AuthService } from './auth/auth.service';
 import { ErrorService } from './auth/errors/error.service';
+import { CityListService } from './email-alerts/city-list.service';
 import { EmailAlertsComponent } from './email-alerts/email-alerts.component';
+import { CityListComponent } from './email-alerts/city-list/city-list.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { EmailAlertsComponent } from './email-alerts/email-alerts.component';
     SearchdropComponent,
     TodayComponent,
     ErrorComponent,
-    EmailAlertsComponent
+    EmailAlertsComponent,
+    CityListComponent
   ],
   imports: [
     BrowserModule,
@@ -46,10 +49,17 @@ import { EmailAlertsComponent } from './email-alerts/email-alerts.component';
     JsonpModule,
     HttpClientModule,
     AuthModule,
-    StoreModule.forRoot({weatherLocation: weatherLocationReducer}),
+    StoreModule.forRoot({ weatherLocation: weatherLocationReducer }),
     !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
-  providers: [RequestService, AutocompleteService, ClickValueService, AuthService, ErrorService],
+  providers: [
+    RequestService,
+    AutocompleteService,
+    ClickValueService,
+    AuthService,
+    ErrorService,
+    CityListService
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

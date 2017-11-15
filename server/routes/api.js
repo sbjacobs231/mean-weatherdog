@@ -69,6 +69,25 @@ router.get('/users/:id', (req, res) => {
   });
 });
 
+router.put('/:users/:id', (req, res) => {
+  console.log('added city');
+  User.findOneAndUpdate(
+    {
+      _id: req.params.id
+    },
+    { $set: { cityAlerts: req.body.cityAlerts } },
+    { upsert: true },
+    function(err, newCityAlert) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(newCityAlert);
+        res.send(newCityAlert);
+      }
+    }
+  );
+});
+
 router.post('/users', (req, res) => {
   const user = new User({
     firstName: req.body.firstName,
@@ -127,27 +146,6 @@ router.post('/users/signin', (req, res) => {
         });
       });
   });
-});
-
-router.put('/users/:id', (req, res) => {
-  console.log('backend triggered');
-  console.log('req', req);
-  console.log('req body', req.body);
-  User.findOneAndUpdate(
-    {
-      _id: req.body.id
-    },
-    { $set: { cityAlerts: req.body.cityAlerts } },
-    { upsert: true },
-    function(err, newCityAlert) {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log(newCityAlert);
-        res.status(204);
-      }
-    }
-  );
 });
 
 module.exports = router;

@@ -15,21 +15,22 @@ export class LoginComponent implements OnInit {
   myForm: FormGroup;
   error: Error;
 
-  constructor(private authService: AuthService,
-              private router: Router,
-              private errorService: ErrorService) { }
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private errorService: ErrorService
+  ) {}
 
   onSubmit() {
     const user = new User(this.myForm.value.email, this.myForm.value.password);
-    this.authService.signin(user)
-      .subscribe(
-        data => {
-          localStorage.setItem('token', data.token);
-          localStorage.setItem('userId', data.userId);
-          this.router.navigateByUrl('/forecast');
-        },
-        error => console.log(error)
-      )
+    this.authService.signin(user).subscribe(
+      data => {
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('userId', data.userId);
+        this.router.navigateByUrl('');
+      },
+      error => console.log(error)
+    );
     this.myForm.reset();
   }
 
@@ -37,16 +38,14 @@ export class LoginComponent implements OnInit {
     this.myForm = new FormGroup({
       email: new FormControl(null, [
         Validators.required,
-        Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
+        Validators.pattern(
+          "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+        )
       ]),
-      password: new FormControl(null, Validators.required),
+      password: new FormControl(null, Validators.required)
     });
-    this.errorService.errorSignin
-      .subscribe(
-        (error: Error) => {
-          this.error = error;
-        }
-      )
+    this.errorService.errorSignin.subscribe((error: Error) => {
+      this.error = error;
+    });
   }
-
 }

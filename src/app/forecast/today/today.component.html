@@ -62,7 +62,7 @@
       class="col-xs-12 map">
       <img
         *ngIf="(today | async).country === 'US' || (today | async).country === 'CA' || (today | async).country === 'AU';else othercontent"
-        src="https://api.wunderground.com/api/47be6887c60a72bf/animatedradar/image.gif?centerlat={{ (today | async).latitude }}&centerlon={{ (today | async).longitude }}&radius=100&width=770&height=300&newmaps=1&delay=30&num=15"
+        src="https://api.wunderground.com/api/47be6887c60a72bf/animatedradar/image.gif?centerlat={{ (today | async).latitude }}&centerlon={{ (today | async).longitude }}&radius=100&width=770&height=300&newmaps=1&delay=50&num=1"
         alt="Turn off Addblock to see map">
     </div>
     <ng-template #othercontent>
@@ -70,5 +70,11 @@
         src="https://api.wunderground.com/api/47be6887c60a72bf/animatedradar/image.gif?centerlat={{ (today | async).latitude }}&centerlon={{ (today | async).longitude }}&radius=100&width=770&height=300&newmaps=1&delay=30&num=1"
         alt="Turn off Addblock to see map">
     </ng-template>
+  </div>
+  <div class="col-xs-4">
+    <app-email-alerts></app-email-alerts>
+  </div>
+  <div class="col-xs-8">
+    <app-city-list></app-city-list>
   </div>
 </div>

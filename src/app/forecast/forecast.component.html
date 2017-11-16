@@ -1,7 +1,10 @@
 <div class="container header">
   <div class="row">
     <div class="col-xs-12" style="text-align:right;padding-top:10px;">
-        <a (click)="logout()">Logout</a>
+      <a *ngIf="!isLoggedIn(); else logoutTag"
+        routerLink="/signin"
+        routerLinkActive="active">Login</a>
+      <ng-template #logoutTag><a (click)="logout()">Logout</a></ng-template>
     </div>
   </div>
   <div class="row">
@@ -26,16 +29,16 @@
     <div class="col-xs-6 nav-buttons">
       <div class="button-group">
         <button
-          routerLink="/forecast"
+          routerLink=""
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }">Today
         </button>
         <button
-          routerLink="hourly"
+          routerLink="/hourly"
           routerLinkActive="active">Hourly
         </button>
         <button
-          routerLink="daily"
+          routerLink="/daily"
           routerLinkActive="active">10 day
         </button>
       </div>

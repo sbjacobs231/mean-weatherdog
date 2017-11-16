@@ -15,9 +15,11 @@ export class RegisterComponent implements OnInit {
   myForm: FormGroup;
   error: Error;
 
-  constructor(private authService: AuthService,
-              private router: Router,
-              private errorService: ErrorService) { }
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private errorService: ErrorService
+  ) {}
 
   onSubmit() {
     const user = new User(
@@ -26,13 +28,13 @@ export class RegisterComponent implements OnInit {
       this.myForm.value.firstName,
       this.myForm.value.lastName
     );
-    this.authService.signup(user)
-      .subscribe(
-        data => {
-          this.router.navigateByUrl('/');
-        },
-        error => console.log(error)
-      )
+    this.authService.signup(user).subscribe(
+      data => {
+        console.log(data);
+        this.router.navigateByUrl('/');
+      },
+      error => console.log(error)
+    );
     this.myForm.reset();
   }
 
@@ -42,16 +44,14 @@ export class RegisterComponent implements OnInit {
       lastName: new FormControl(null, Validators.required),
       email: new FormControl(null, [
         Validators.required,
-        Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
+        Validators.pattern(
+          "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+        )
       ]),
-      password: new FormControl(null, Validators.required),
+      password: new FormControl(null, Validators.required)
     });
-    this.errorService.errorSignup
-      .subscribe(
-        (error: Error) => {
-          this.error = error;
-        }
-      )
+    this.errorService.errorSignup.subscribe((error: Error) => {
+      this.error = error;
+    });
   }
-
 }

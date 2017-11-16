@@ -20,11 +20,14 @@ import { RequestService } from './forecast/request.service';
 import { ClickValueService } from './forecast/searchdrop/click-value.service';
 import { SearchdropComponent } from './forecast/searchdrop/searchdrop.component';
 import { TodayComponent } from './forecast/today/today.component';
-import { DataService } from './data.service';
+import { ErrorComponent } from './auth/errors/error.component';
 
 import { AuthModule } from './auth/auth.module';
 import { AuthService } from './auth/auth.service';
 import { ErrorService } from './auth/errors/error.service';
+import { CityListService } from './email-alerts/city-list.service';
+import { EmailAlertsComponent } from './email-alerts/email-alerts.component';
+import { CityListComponent } from './email-alerts/city-list/city-list.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,10 @@ import { ErrorService } from './auth/errors/error.service';
     HourlyComponent,
     DailyComponent,
     SearchdropComponent,
-    TodayComponent
+    TodayComponent,
+    ErrorComponent,
+    EmailAlertsComponent,
+    CityListComponent
   ],
   imports: [
     BrowserModule,
@@ -43,10 +49,17 @@ import { ErrorService } from './auth/errors/error.service';
     JsonpModule,
     HttpClientModule,
     AuthModule,
-    StoreModule.forRoot({weatherLocation: weatherLocationReducer}),
+    StoreModule.forRoot({ weatherLocation: weatherLocationReducer }),
     !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
-  providers: [RequestService, AutocompleteService, ClickValueService, DataService, AuthService, ErrorService],
+  providers: [
+    RequestService,
+    AutocompleteService,
+    ClickValueService,
+    AuthService,
+    ErrorService,
+    CityListService
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

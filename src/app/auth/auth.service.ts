@@ -9,33 +9,42 @@ import { ErrorService } from './errors/error.service';
 
 @Injectable()
 export class AuthService {
-  constructor(private http: Http,
-              private router: Router,
-              private errorService: ErrorService
-              ) {}
+  constructor(
+    private http: Http,
+    private router: Router,
+    private errorService: ErrorService
+  ) {}
 
   signup(user: User) {
     const body = JSON.stringify(user);
-    const headers = new Headers({'Content-Type': 'application/json'});
-    // return this.http.post('http://localhost:3000/api/users', body, {headers: headers})
-    return this.http.post('http://weatherapp-env.csr5iwjf2p.us-east-2.elasticbeanstalk.com/api/users', body, {headers: headers})
-      .map((response: Response) => response.json())
-      .catch((error: Response) => {
-        this.errorService.handleSignupError(error.json());
-        return Observable.throw(error.json());
-      });
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    return (
+      this.http
+        .post('http://localhost:3000/api/users', body, { headers: headers })
+        // return this.http.post('http://weatherdog.us-east-2.elasticbeanstalk.com/api/users', body, {headers: headers})
+        .map((response: Response) => response.json())
+        .catch((error: Response) => {
+          this.errorService.handleSignupError(error.json());
+          return Observable.throw(error.json());
+        })
+    );
   }
 
   signin(user: User) {
     const body = JSON.stringify(user);
-    const headers = new Headers({'Content-Type': 'application/json'});
-    // return this.http.post('http://localhost:3000/api/users/signin', body, {headers: headers})
-    return this.http.post('http://weatherapp-env.csr5iwjf2p.us-east-2.elasticbeanstalk.com/api/users/signin', body, {headers: headers})
-      .map((response: Response) => response.json())
-      .catch((error: Response) => {
-        this.errorService.handleSigninError(error.json());
-        return Observable.throw(error.json());
-      })
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    return (
+      this.http
+        .post('http://localhost:3000/api/users/signin', body, {
+          headers: headers
+        })
+        // return this.http.post('http://weatherdog.us-east-2.elasticbeanstalk.com/api/users/signin', body, {headers: headers})
+        .map((response: Response) => response.json())
+        .catch((error: Response) => {
+          this.errorService.handleSigninError(error.json());
+          return Observable.throw(error.json());
+        })
+    );
   }
 
   isLoggedIn() {

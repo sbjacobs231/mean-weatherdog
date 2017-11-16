@@ -12,25 +12,33 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { AuthGuard } from './auth/auth-guard.service';
 
+import { ErrorComponent } from './auth/errors/error.component';
+
 const appRoutes: Routes = [
-  { path: '', component: AuthComponent, children: [
-    { path: '', component: LoginComponent, pathMatch: 'full'},
-    { path: 'signup', component: RegisterComponent}
-  ]},
-  { path: 'forecast', component: ForecastComponent, canActivate: [AuthGuard], children: [
-    { path: '', component: TodayComponent, pathMatch: 'full'},
-    { path: 'daily', component: DailyComponent },
-    { path: 'hourly', component: HourlyComponent }
-  ]},
-  { path: '**', redirectTo: ''}
-]
+  {
+    path: '',
+    component: ForecastComponent,
+    children: [
+      { path: '', component: TodayComponent, pathMatch: 'full' },
+      { path: 'daily', component: DailyComponent },
+      { path: 'hourly', component: HourlyComponent }
+    ]
+  },
+  {
+    path: '',
+    component: AuthComponent,
+    children: [
+      { path: 'signin', component: LoginComponent },
+      { path: 'signup', component: RegisterComponent }
+    ]
+  },
+  { path: '**', redirectTo: '' }
+];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(appRoutes)
-  ],
+  imports: [RouterModule.forRoot(appRoutes)],
   declarations: [],
   exports: [RouterModule],
   providers: [AuthGuard]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

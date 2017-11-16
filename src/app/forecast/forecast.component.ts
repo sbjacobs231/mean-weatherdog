@@ -22,20 +22,23 @@ export class ForecastComponent implements OnInit {
   address: Observable<fromLocation.State>;
   inputValue: any;
 
-  constructor(private store: Store<fromLocation.AppState>,
-              private autocompleteService: AutocompleteService,
-              private requestService: RequestService,
-              private clickValueService: ClickValueService,
-              private authService: AuthService) { }
+  constructor(
+    private store: Store<fromLocation.AppState>,
+    private autocompleteService: AutocompleteService,
+    private requestService: RequestService,
+    private clickValueService: ClickValueService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
     this.address = this.store.select('weatherLocation');
-    this.requestService.getDailyForecast('San Francisco, CA', '/q/zmw:94102.1.99999');
-    this.clickValueService.searchValue.subscribe(
-      data => {
-        this.inputValue = data;
-      }
+    this.requestService.getDailyForecast(
+      'San Francisco, CA',
+      '/q/zmw:94102.1.99999'
     );
+    this.clickValueService.searchValue.subscribe(data => {
+      this.inputValue = data;
+    });
     this.inputSearch.nativeElement.focus();
   }
 
@@ -50,5 +53,4 @@ export class ForecastComponent implements OnInit {
   logout() {
     this.authService.logout();
   }
-
 }

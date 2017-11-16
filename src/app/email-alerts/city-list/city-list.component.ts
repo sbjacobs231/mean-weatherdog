@@ -3,6 +3,7 @@ import { Http, Headers, Response } from '@angular/http';
 import 'rxjs/Rx';
 import { Observable } from 'rxjs';
 import { CityListService } from '../city-list.service';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-city-list',
@@ -12,10 +13,15 @@ import { CityListService } from '../city-list.service';
 export class CityListComponent implements OnInit {
   cityList: string[];
 
-  constructor(private cityListService: CityListService) {}
+  constructor(
+    private cityListService: CityListService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
-    this.getCities();
+    if (this.authService.isLoggedIn()) {
+      this.getCities();
+    }
   }
 
   getCities() {

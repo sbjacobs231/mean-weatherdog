@@ -28,4 +28,8 @@ export class CityListComponent implements OnInit {
       }
     );
   }
+
+  deleteCity(city) {
+    this.cityListService.removeCity(city);
+  }
 }

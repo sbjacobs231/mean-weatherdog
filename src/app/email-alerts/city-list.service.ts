@@ -22,11 +22,27 @@ export class CityListService {
   addCity(cityName) {
     let cityArr = this.currentCityList;
     if (cityArr.indexOf(cityName) > -1) {
-      console.log('this city already exists in your saved alerts');
-      return;
+      return; // end function here if user tries adding item that already exists in array
     } else {
       cityArr.push(cityName);
     }
+    this.currentCityList = cityArr;
+    const body = JSON.stringify({
+      id: this.userId,
+      cityAlerts: cityArr
+    });
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    return this.http
+      .put(this.url, body, { headers: headers })
+      .subscribe((response: Response) => {
+        return response.json();
+      });
+  }
+
+  removeCity(cityName) {
+    let cityArr = this.currentCityList;
+    const cityIdx = cityArr.indexOf(cityName);
+    cityArr.splice(cityIdx, 1);
     this.currentCityList = cityArr;
     const body = JSON.stringify({
       id: this.userId,

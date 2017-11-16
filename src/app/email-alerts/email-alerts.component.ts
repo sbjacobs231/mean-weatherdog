@@ -28,7 +28,7 @@ export class EmailAlertsComponent implements OnInit {
     return this.authService.isLoggedIn();
   }
 
-  postCity(location) {
+  putCity(location) {
     this.cityListService.addCity(location);
   }
 }

@@ -21,7 +21,7 @@ export class CityListComponent implements OnInit {
   getCities() {
     this.cityListService.getCitiesSaved().subscribe(
       cities => {
-        this.cityList = cities;
+        this.cityList = this.cityListService.currentCityList;
       },
       error => {
         console.log(error);

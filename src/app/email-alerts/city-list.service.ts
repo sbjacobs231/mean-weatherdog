@@ -21,7 +21,13 @@ export class CityListService {
 
   addCity(cityName) {
     let cityArr = this.currentCityList;
-    cityArr.push(cityName);
+    if (cityArr.indexOf(cityName) > -1) {
+      console.log('this city already exists in your saved alerts');
+      return;
+    } else {
+      cityArr.push(cityName);
+    }
+    this.currentCityList = cityArr;
     const body = JSON.stringify({
       id: this.userId,
       cityAlerts: cityArr
@@ -30,11 +36,7 @@ export class CityListService {
     return this.http
       .put(this.url, body, { headers: headers })
       .subscribe((response: Response) => {
-        response.json();
+        return response.json();
       });
-    // .catch((error: Response) => {
-    //   this.errorService.handleSigninError(error.json());
-    //   return Observable.throw(error.json());
-    // });
   }
 }

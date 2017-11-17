@@ -1,6 +1,9 @@
 <div class="col-xs-12 bag">
   <p>{{ error?.message }}</p>
   <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    <div class="form-group" style="margin-bottom: 0">
+      <label *ngIf="(myForm.get('firstName').invalid && myForm.get('firstName').touched) || (myForm.get('lastName').invalid && myForm.get('lastName').touched)">Field Blank</label>
+    </div>
     <div class="form-group" style="width:50%;float:left;padding-right:5px;">
       <input
         type="text"
@@ -18,6 +21,7 @@
         formControlName="lastName">
     </div>
     <div class="form-group">
+      <label for="email" *ngIf="myForm.get('email').invalid && myForm.get('email').touched">Invalid Email</label>
       <input
         type="email"
         id="email"
@@ -26,6 +30,7 @@
         formControlName="email">
     </div>
     <div class="form-group">
+      <label for="password" *ngIf="myForm.get('password').invalid && myForm.get('password').touched">Field Blank</label>
       <input
         type="password"
         id="password"

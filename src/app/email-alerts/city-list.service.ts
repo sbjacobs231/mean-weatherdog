@@ -6,8 +6,8 @@ import { ErrorService } from '../auth/errors/error.service';
 
 @Injectable()
 export class CityListService {
-  // userId = localStorage.getItem('userId');
   url = 'http://weatherdog.us-east-2.elasticbeanstalk.com/api/users/';
+  // url = 'http://localhost:3000/api/users/';
   currentCityList: string[];
 
   constructor(private http: Http, private errorService: ErrorService) {}
@@ -24,7 +24,7 @@ export class CityListService {
   addCity(cityName) {
     let cityArr = this.currentCityList;
     if (cityArr.indexOf(cityName) > -1) {
-      return; // end function here if user tries adding item that already exists in array
+      return;
     } else {
       cityArr.push(cityName);
     }

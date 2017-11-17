@@ -23,3 +23,12 @@ button:hover {
 input {
   height: 40px;
 }
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+label {
+  color: red;
+  width: 100%;
+  text-align: left;
+  margin-bottom: 0;
+}

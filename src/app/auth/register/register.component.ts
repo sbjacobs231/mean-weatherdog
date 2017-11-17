@@ -32,12 +32,9 @@ export class RegisterComponent implements OnInit {
       data => {
         console.log(data);
         this.signIn(user);
-        // this.router.navigateByUrl('/');
       },
       error => console.log(error)
     );
-    // this.signIn(user);
-    // this.myForm.reset();
   }
 
   signIn(newUser) {

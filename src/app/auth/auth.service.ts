@@ -18,10 +18,10 @@ export class AuthService {
   signup(user: User) {
     const body = JSON.stringify(user);
     const headers = new Headers({ 'Content-Type': 'application/json' });
-    // return this.http.post('http://localhost:3000/api/users', body, { headers: headers })
     return this.http
       .post(
         'http://weatherdog.us-east-2.elasticbeanstalk.com/api/users',
+        // 'http://localhost:3000/api/users',
         body,
         { headers: headers }
       )
@@ -35,10 +35,10 @@ export class AuthService {
   signin(user: User) {
     const body = JSON.stringify(user);
     const headers = new Headers({ 'Content-Type': 'application/json' });
-    // return this.http.post('http://localhost:3000/api/users/signin', body, {headers: headers})
     return this.http
       .post(
         'http://weatherdog.us-east-2.elasticbeanstalk.com/api/users/signin',
+        // 'http://localhost:3000/api/users/signin',
         body,
         { headers: headers }
       )

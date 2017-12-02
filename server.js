@@ -9,7 +9,10 @@ const mongoose = require('mongoose');
 const api = require('./server/routes/api');
 // mongoose.connect('localhost:27017/mean-weather-app');
 mongoose.connect(
-  'mongodb://test-user:testpassword@ds147864.mlab.com:47864/weather-app'
+  'mongodb://test-user:testpassword@ds147864.mlab.com:47864/weather-app',
+  {
+    useMongoClient: true
+  }
 );
 
 // Parsers

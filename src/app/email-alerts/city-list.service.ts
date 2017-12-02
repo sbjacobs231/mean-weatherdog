@@ -6,8 +6,8 @@ import { ErrorService } from '../auth/errors/error.service';
 
 @Injectable()
 export class CityListService {
-  url = 'http://weatherdog.us-east-2.elasticbeanstalk.com/api/users/';
-  // url = 'http://localhost:3000/api/users/';
+  // url = 'http://weatherdog.us-east-2.elasticbeanstalk.com/api/users/';
+  url = 'http://localhost:3000/api/users/';
   currentCityList: string[];
 
   constructor(private http: Http, private errorService: ErrorService) {}

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as d3 from 'd3';
+import * as axis from 'd3-axis';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 
@@ -44,6 +45,8 @@ export class GraphComponent implements OnInit {
     // set the ranges
     var x = d3.scaleTime().range([0, width]);
     var y = d3.scaleLinear().range([height, 0]);
+    var xAxis = axis.axisBottom(x).tickFormat(d3.timeFormat('%I %p'));
+    var yAxis = axis.axisLeft(y);
 
     // define the line
     var valueline1 = d3
@@ -75,8 +78,6 @@ export class GraphComponent implements OnInit {
 
     this.dataGraph.forEach(d => {
       d['date'] = parseTime(d['date']);
-      // d['temp'] = +d['temp'];
-      // d['humidity'] = +d['humidity'];
     });
 
     // sort years ascending
@@ -90,6 +91,7 @@ export class GraphComponent implements OnInit {
         return d.date;
       })
     );
+
     y.domain([
       d3.min(this.dataGraph, d => {
         return Math.min(d.temp, d.humidity) - 5;
@@ -105,7 +107,7 @@ export class GraphComponent implements OnInit {
       .data([this.dataGraph])
       .attr('class', 'line')
       .attr('d', valueline1)
-      .attr('style', 'fill: none; stroke: #008FDE; stroke-width: 3px;');
+      .attr('style', 'fill: none; stroke: #FF9200; stroke-width: 3px;');
     svg
       .append('text')
       .text('Temp')
@@ -121,7 +123,7 @@ export class GraphComponent implements OnInit {
       .data([this.dataGraph])
       .attr('class', 'line')
       .attr('d', valueline2)
-      .attr('style', 'fill: none; stroke: orange; stroke-width: 3px;');
+      .attr('style', 'fill: none; stroke: #008FDE; stroke-width: 3px;');
     svg
       .append('text')
       .text('Humidity')
@@ -131,13 +133,28 @@ export class GraphComponent implements OnInit {
         return 'translate(' + x(d.date) + ',' + y(d.humidity) + ')';
       });
     // Add the X Axis
+    // svg
+    //   .append('g')
+    //   .attr('transform', 'translate(0,' + height + ')')
+    //   .call(d3.axisBottom(x));
+    //
+    // // Add the Y Axis
+    // svg.append('g').call(d3.axisLeft(y));
     svg
       .append('g')
+      .attr('class', 'x axis')
       .attr('transform', 'translate(0,' + height + ')')
-      .call(d3.axisBottom(x));
+      .call(xAxis);
 
-    // Add the Y Axis
-    svg.append('g').call(d3.axisLeft(y));
+    svg
+      .append('g')
+      .attr('class', 'y axis')
+      .call(yAxis)
+      .append('text')
+      .attr('transform', 'rotate(-90)')
+      .attr('y', 6)
+      .attr('dy', '.71em')
+      .style('text-anchor', 'end');
 
     d3
       .selectAll('text')

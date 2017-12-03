@@ -28,14 +28,14 @@ export class GraphComponent implements OnInit {
           };
         })
         .slice(0, 13);
+      this.drawCharts();
     });
-    this.drawCharts();
   }
 
   drawCharts() {
     // set the dimensions and margins of the graph
-    var margin = { top: 20, right: 20, bottom: 30, left: 20 };
-    var width = 960 - margin.left - margin.right;
+    var margin = { top: 20, right: 40, bottom: 30, left: 30 };
+    var width = 930 - margin.left - margin.right;
     var height = 275 - margin.top - margin.bottom;
 
     // parse the date / time
@@ -65,8 +65,9 @@ export class GraphComponent implements OnInit {
         return y(d.humidity);
       });
 
-    var svg = d3
-      .select('svg')
+    var svg = d3.select('svg');
+    svg.selectAll('*').remove(); // delete previous graphs
+    svg
       .attr('width', width + margin.left + margin.right)
       .attr('height', height + margin.top + margin.bottom)
       .append('g')
@@ -90,9 +91,11 @@ export class GraphComponent implements OnInit {
       })
     );
     y.domain([
-      0,
+      d3.min(this.dataGraph, d => {
+        return Math.min(d.temp, d.humidity) - 5;
+      }),
       d3.max(this.dataGraph, d => {
-        return Math.max(d.temp, d.humidity);
+        return Math.max(d.temp, d.humidity) + 5;
       })
     ]);
 
@@ -102,7 +105,7 @@ export class GraphComponent implements OnInit {
       .data([this.dataGraph])
       .attr('class', 'line')
       .attr('d', valueline1)
-      .attr('style', 'fill: none; stroke: red; stroke-width: 3px;');
+      .attr('style', 'fill: none; stroke: #008FDE; stroke-width: 3px;');
     svg
       .append('text')
       .text('Temp')

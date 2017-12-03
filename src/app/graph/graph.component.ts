@@ -114,7 +114,7 @@ export class GraphComponent implements OnInit {
     svg
       .append('path')
       .data([this.dataGraph])
-      .attr('class', 'line')
+      // .attr('class', 'line')
       .attr('d', valueline1)
       .attr('style', 'fill: none; stroke: #FF9200; stroke-width: 3px;');
     svg
@@ -130,7 +130,7 @@ export class GraphComponent implements OnInit {
     svg
       .append('path')
       .data([this.dataGraph])
-      .attr('class', 'line')
+      // .attr('class', 'line')
       .attr('d', valueline2)
       .attr('style', 'fill: none; stroke: #008FDE; stroke-width: 3px;');
     svg
@@ -142,19 +142,12 @@ export class GraphComponent implements OnInit {
         return 'translate(' + x(d.date) + ',' + y(d.humidity) + ')';
       });
     // Add the X Axis
-    // svg
-    //   .append('g')
-    //   .attr('transform', 'translate(0,' + height + ')')
-    //   .call(d3.axisBottom(x));
-    //
-    // // Add the Y Axis
-    // svg.append('g').call(d3.axisLeft(y));
     svg
       .append('g')
       .attr('class', 'x axis')
       .attr('transform', 'translate(0,' + height + ')')
       .call(xAxis);
-
+    // Add the Y Axis
     svg
       .append('g')
       .attr('class', 'y axis')
@@ -164,7 +157,7 @@ export class GraphComponent implements OnInit {
       .attr('y', 6)
       .attr('dy', '.71em')
       .style('text-anchor', 'end');
-
+    // Text Styling
     d3
       .selectAll('text')
       .style('font-size', 14)

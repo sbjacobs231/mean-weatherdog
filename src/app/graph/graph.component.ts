@@ -22,13 +22,22 @@ export class GraphComponent implements OnInit {
     this.dataStore.subscribe(d => {
       this.dataGraph = d.hourlyArray
         .map(each => {
+          var prefix = each['FCTTIME'];
           return {
-            date: each['FCTTIME']['hour'],
+            // date: each['FCTTIME']['hour'],
+            date:
+              prefix['hour'] +
+              ' ' +
+              prefix['mon_abbrev'] +
+              ' ' +
+              prefix['mday_padded'] +
+              ' ' +
+              prefix['year'],
             temp: each['temp']['english'],
             humidity: each['humidity']
           };
         })
-        .slice(0, 13);
+        .slice(0, 12);
       this.drawCharts();
     });
   }
@@ -40,7 +49,7 @@ export class GraphComponent implements OnInit {
     var height = 275 - margin.top - margin.bottom;
 
     // parse the date / time
-    var parseTime = d3.timeParse('%H');
+    var parseTime = d3.timeParse('%H %b %d %Y');
 
     // set the ranges
     var x = d3.scaleTime().range([0, width]);
@@ -77,7 +86,7 @@ export class GraphComponent implements OnInit {
       .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
     this.dataGraph.forEach(d => {
-      d['date'] = parseTime(d['date']);
+      d['date'] = +parseTime(d['date']);
     });
 
     // sort years ascending

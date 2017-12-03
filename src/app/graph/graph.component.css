@@ -1,0 +1,13 @@
+/*.axis--x path {
+  display: none !important;
+}
+
+.line {
+  fill: none !important;
+  stroke: steelblue !important;
+  stroke-width: 2px !important;
+}*/
+svg {
+  margin-bottom: 50px;
+  overflow: visible;
+}

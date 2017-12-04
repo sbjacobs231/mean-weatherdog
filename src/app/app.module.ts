@@ -29,6 +29,7 @@ import { CityListService } from './email-alerts/city-list.service';
 import { EmailAlertsComponent } from './email-alerts/email-alerts.component';
 import { CityListComponent } from './email-alerts/city-list/city-list.component';
 import { GraphComponent } from './graph/graph.component';
+import { DailyGraphComponent } from './daily-graph/daily-graph.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { GraphComponent } from './graph/graph.component';
     ErrorComponent,
     EmailAlertsComponent,
     CityListComponent,
-    GraphComponent
+    GraphComponent,
+    DailyGraphComponent
   ],
   imports: [
     BrowserModule,

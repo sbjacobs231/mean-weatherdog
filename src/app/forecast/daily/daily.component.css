@@ -1,6 +1,6 @@
 table {
   margin-top: 85px;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
   width: 100%;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
   border: solid 1px #979797;
@@ -30,8 +30,8 @@ tr {
 }
 b {
   text-transform: uppercase;
-  font-family: "ReadventorBold";
+  font-family: 'ReadventorBold';
 }
 img {
-  width:40px;
+  width: 40px;
 }

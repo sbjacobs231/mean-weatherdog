@@ -24,7 +24,6 @@ export class GraphComponent implements OnInit {
         .map(each => {
           var prefix = each['FCTTIME'];
           return {
-            // date: each['FCTTIME']['hour'],
             date:
               prefix['hour'] +
               ' ' +
@@ -114,33 +113,34 @@ export class GraphComponent implements OnInit {
     svg
       .append('path')
       .data([this.dataGraph])
-      // .attr('class', 'line')
       .attr('d', valueline1)
       .attr('style', 'fill: none; stroke: #FF9200; stroke-width: 3px;');
     svg
       .append('text')
-      .text('Temp')
-      .attr('x', width)
-      .data(this.dataGraph)
+      .data(this.dataGraph, () => {
+        last = this.dataGraph[this.dataGraph.length - 1];
+      })
       .attr('transform', d => {
-        return 'translate(' + x(d.date) + ',' + y(d.temp) + ')';
-      });
+        return 'translate(' + x(last.date) + ',' + y(last.temp) + ')';
+      })
+      .text('Temp');
 
     // Add the valueline path.
+    var last;
     svg
       .append('path')
       .data([this.dataGraph])
-      // .attr('class', 'line')
       .attr('d', valueline2)
       .attr('style', 'fill: none; stroke: #008FDE; stroke-width: 3px;');
     svg
       .append('text')
-      .text('Humidity')
-      .attr('x', width)
-      .data(this.dataGraph)
+      .data(this.dataGraph, () => {
+        last = this.dataGraph[this.dataGraph.length - 1];
+      })
       .attr('transform', d => {
-        return 'translate(' + x(d.date) + ',' + y(d.humidity) + ')';
-      });
+        return 'translate(' + x(last.date) + ',' + y(last.humidity) + ')';
+      })
+      .text('Humidity');
     // Add the X Axis
     svg
       .append('g')

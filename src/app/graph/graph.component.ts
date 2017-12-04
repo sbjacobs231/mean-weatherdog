@@ -110,6 +110,7 @@ export class GraphComponent implements OnInit {
     ]);
 
     // Add the valueline path.
+    var last;
     svg
       .append('path')
       .data([this.dataGraph])
@@ -126,7 +127,6 @@ export class GraphComponent implements OnInit {
       .text('Temp');
 
     // Add the valueline path.
-    var last;
     svg
       .append('path')
       .data([this.dataGraph])
